@@ -2,7 +2,7 @@ body{
     padding: 100px;
 }
 
-.submit-area{
+.submit-area, .withdrawAmountBg, .depositAmountBg{
     margin-top: 50px;
     padding: 40px;
     border-radius: 10px;
@@ -15,7 +15,7 @@ body{
 
 .status{
     color: white;
-    margin: 0 20px;
+    margin: 10px 20px;
     padding: 20px;
     border-radius: 10px;
 }

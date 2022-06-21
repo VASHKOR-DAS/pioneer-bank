@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pioneer Bank</title>
-    <!-- bootstrap link -->
+ <!-- bootstrap link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <!-- css link -->
+ <!-- css link -->
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -19,9 +19,9 @@
 
         <div class="submit-area">
             <h4>Login</h4>
-            <input class="form-control" type="email" placeholder="Email" name="" id="">
+            <input class="form-control" type="email" placeholder="Email" name="email" id="email">
             <br>
-            <input class="form-control" type="password" placeholder="Password" name="" id="">
+            <input class="form-control" type="password" placeholder="Password" name="password" id="password">
             <br>
             <button id="login" class="btn btn-success">Enter</button>
 
@@ -30,31 +30,41 @@
 
     </div>
 
+ <!-- Transaction Area -->
+
     <div id="transaction-area">
 
         <div class="row">
 
+            <div class="col-md-4">
 
-            <div class="col-4">
                 <div class="deposit status">
+
                     <h5>Deposit</h5>
-                    <h1>$00</h1>
+                    <h1>$<span id="currentDeposit">00</span></h1>
+
                 </div>
             </div>
 
 
-            <div class="col-4">
+            <div class="col-md-4">
+
                 <div class="withdraw status">
+
                     <h5>Withdraw</h5>
-                    <h1>$00</h1>
+                    <h1>$<span id="currentWithdraw">00</span></h1>
+
                 </div>
             </div>
 
 
-            <div class="col-4">
+            <div class="col-md-4">
+
                 <div class="balance status">
+
                     <h5>Balance</h5>
-                    <h1>$00</h1>
+                    <h1>$<span id="currentBalance">1240</span></h1>
+
                 </div>
             </div>
 
@@ -62,22 +72,122 @@
 
 
 
+     <!-- Amount Section -->
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="depositAmountBg">
+
+                    <h4>Deposit</h4>
+
+                    <input class="form-control" type="number" name="depositAmount" placeholder="$ amount you want to deposit" id="depositAmount">
+
+                    <br>
+
+                    <button id="deposit" class="btn btn-success">Deposit</button>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="withdrawAmountBg">
+
+                    <h4>Withdraw</h4>
+
+                    <input class="form-control" type="number" name="withdrawAmount" placeholder="$ amount you want to withdraw" id="withdrawAmount">
+
+                    <br>
+
+                    <button id="withdraw" class="btn btn-success">Withdraw</button>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        
+
+
+
     </div>
 
 
 
-
+<!-- Java Script Section -->
 
     <script>
-        const loginBtn = document.getElementById('login')
+        // login button event handler
+        const loginBtn = document.getElementById('login');
         loginBtn.addEventListener('click', function () {
             const loginArea = document.getElementById('login-area')
             loginArea.style.display = 'none';
 
             const transactionArea = document.getElementById('transaction-area');
             transactionArea.style.display = 'block'
-
         })
+
+
+        // deposit button event handler
+
+        const depositBtn = document.getElementById('deposit');
+        depositBtn.addEventListener('click', function () {
+            
+            //input text value capture
+            const depositAmount = document.getElementById('depositAmount').value;
+            //.value diye input box er value ta button a neya hoyeche
+            //N.B ai value gulo string anujayi thake
+            const depositNumber = parseFloat(depositAmount);
+            //parseFloat holo string k number a convert kora
+
+/**
+            // Deposit totalText value capture
+
+            const currentDeposit = document.getElementById('currentDeposit').innerText;
+            //.innerText diye text er value ta button a neya hoyeche
+            const currentDepositNumber = parseFloat(currentDeposit);
+
+            const totalDeposit = depositNumber + currentDepositNumber;
+
+            //jeta pawa gese seta uporer currentDeposit er soman kore dewa
+
+            document.getElementById('currentDeposit').innerText = totalDeposit;
+
+**/
+
+/**
+            // Deposit howar sathe sathe Balance barbe
+
+            const currentBalance = document.getElementById('currentBalance').innerText;
+            const currentBalanceNumber = parseFloat(currentBalance);
+
+            const totalBalance = depositNumber + currentBalanceNumber;
+            document.getElementById('currentBalance').innerText = totalBalance;
+**/
+            //input box k khali korar jonno
+            document.getElementById('depositAmount').value = "";
+            
+            
+            updateSpanText('currentDeposit', depositNumber);
+            
+
+            updateSpanText('currentBalance', depositNumber);
+        })
+
+        function updateSpanText(id, depositNumber) {
+            const currentBalance = document.getElementById('currentBalance').innerText;
+            const currentBalanceNumber = parseFloat(currentBalance);
+
+            const totalBalance = depositNumber + currentBalanceNumber;
+            document.getElementById('currentBalance').innerText = totalBalance;
+        }
+
+
+
+
     </script>
 </body>
 
