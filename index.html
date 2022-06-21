@@ -135,7 +135,7 @@
 
         const depositBtn = document.getElementById('deposit');
         depositBtn.addEventListener('click', function () {
-            
+
             //input text value capture
             const depositAmount = document.getElementById('depositAmount').value;
             //.value diye input box er value ta button a neya hoyeche
@@ -170,19 +170,18 @@
             //input box k khali korar jonno
             document.getElementById('depositAmount').value = "";
             
-            
+            //ak e kaj bar bar kora hoyeche, tai function likhe kora holo
             updateSpanText('currentDeposit', depositNumber);
-            
-
             updateSpanText('currentBalance', depositNumber);
+
         })
 
         function updateSpanText(id, depositNumber) {
-            const currentBalance = document.getElementById('currentBalance').innerText;
-            const currentBalanceNumber = parseFloat(currentBalance);
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
 
-            const totalBalance = depositNumber + currentBalanceNumber;
-            document.getElementById('currentBalance').innerText = totalBalance;
+            const totalAmount = depositNumber + currentNumber;
+            document.getElementById(id).innerText = totalAmount;
         }
 
 
