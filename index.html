@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pioneer Bank</title>
- <!-- bootstrap link -->
+    <!-- bootstrap link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
- <!-- css link -->
+    <!-- css link -->
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -30,7 +30,7 @@
 
     </div>
 
- <!-- Transaction Area -->
+    <!-- Transaction Area -->
 
     <div id="transaction-area">
 
@@ -72,7 +72,7 @@
 
 
 
-     <!-- Amount Section -->
+        <!-- Amount Section -->
 
         <div class="row">
 
@@ -82,7 +82,8 @@
 
                     <h4>Deposit</h4>
 
-                    <input class="form-control" type="number" name="depositAmount" placeholder="$ amount you want to deposit" id="depositAmount">
+                    <input class="form-control" type="number" name="depositAmount"
+                        placeholder="$ amount you want to deposit" id="depositAmount">
 
                     <br>
 
@@ -97,7 +98,8 @@
 
                     <h4>Withdraw</h4>
 
-                    <input class="form-control" type="number" name="withdrawAmount" placeholder="$ amount you want to withdraw" id="withdrawAmount">
+                    <input class="form-control" type="number" name="withdrawAmount"
+                        placeholder="$ amount you want to withdraw" id="withdrawAmount">
 
                     <br>
 
@@ -109,7 +111,7 @@
 
 
         </div>
-        
+
 
 
 
@@ -117,13 +119,13 @@
 
 
 
-<!-- Java Script Section -->
+    <!-- Java Script Section -->
 
     <script>
         // login button event handler
         const loginBtn = document.getElementById('login');
         loginBtn.addEventListener('click', function () {
-            const loginArea = document.getElementById('login-area')
+            const loginArea = document.getElementById('login-area');
             loginArea.style.display = 'none';
 
             const transactionArea = document.getElementById('transaction-area');
@@ -141,67 +143,71 @@
             //.value diye input box er value ta button a neya hoyeche
             //N.B ai value gulo string anujayi thake
             const depositNumber = parseFloat(depositAmount);
-            //parseFloat holo string k number a convert kora
+            //parseFloat holo string k number(with dosomik) a convert kora
 
-/**
-            // Deposit totalText value capture
+            /**
+                        // Deposit totalText value capture
 
-            const currentDeposit = document.getElementById('currentDeposit').innerText;
-            //.innerText diye text er value ta button a neya hoyeche
-            const currentDepositNumber = parseFloat(currentDeposit);
+                        const currentDeposit = document.getElementById('currentDeposit').innerText;
+                        //.innerText diye text er value ta button a neya hoyeche
+                        const currentDepositNumber = parseFloat(currentDeposit);
 
-            const totalDeposit = depositNumber + currentDepositNumber;
+                        const totalDeposit = depositNumber + currentDepositNumber;
 
-            //jeta pawa gese seta uporer currentDeposit er soman kore dewa
+                        //jeta pawa gese seta uporer currentDeposit er soman kore dewa
 
-            document.getElementById('currentDeposit').innerText = totalDeposit;
+                        document.getElementById('currentDeposit').innerText = totalDeposit;
 
-**/
+            **/
 
-/**
-            // Deposit howar sathe sathe Balance barbe
+            /**
+                        // Deposit howar sathe sathe Balance barbe
 
-            const currentBalance = document.getElementById('currentBalance').innerText;
-            const currentBalanceNumber = parseFloat(currentBalance);
+                        const currentBalance = document.getElementById('currentBalance').innerText;
+                        const currentBalanceNumber = parseFloat(currentBalance);
 
-            const totalBalance = depositNumber + currentBalanceNumber;
-            document.getElementById('currentBalance').innerText = totalBalance;
-**/
+                        const totalBalance = depositNumber + currentBalanceNumber;
+                        document.getElementById('currentBalance').innerText = totalBalance;
+            **/
+
+            // if deposite number value is negative
+            if (depositNumber < 0) {
+                alert("Deposit number cannot be negative");
+            } else {
+                updateSpanText('currentDeposit', depositNumber);
+                updateSpanText('currentBalance', depositNumber);
+            }
+            //ak e kaj bar bar kora hoyeche, tai function likhe kora holo
+
+
             //input box k khali korar jonno
             document.getElementById('depositAmount').value = "";
-            
-            //ak e kaj bar bar kora hoyeche, tai function likhe kora holo
-            updateSpanText('currentDeposit', depositNumber);
-            updateSpanText('currentBalance', depositNumber);
-
         })
-        
-        
+
+
         function updateSpanText(id, depositNumber) {
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
-            
+
             const totalAmount = depositNumber + currentNumber;
             document.getElementById(id).innerText = totalAmount;
         }
 
-        
-        
-        
+
         // withdraw button event handler
         const withdrawBtn = document.getElementById('withdraw');
         withdrawBtn.addEventListener('click', function () {
-        
+
             //input text value capture
             const withdrawAmount = document.getElementById('withdrawAmount').value;
             const withdrawNumber = parseFloat(withdrawAmount);
-        
+
             document.getElementById('withdrawAmount').value = "";
 
             updateSpanText('currentWithdraw', withdrawNumber);
             updateSpanText('currentBalance', -1 * withdrawNumber);
             //withdrawNumber kombe tai -1 diye gun kora hoise
-        
+
         })
 
         function getInputNumber(id, withdrawNumber) {
@@ -209,14 +215,10 @@
             const amountNumber = parseFloat(amount);
             return amountNumber;
             //return na korleo hoy 
-            
+
             // const totalAmount = withdrawNumber - amountNumber;
             // document.getElementById(id).innerText = totalAmount;
         }
-
-
-
-
     </script>
 </body>
 
