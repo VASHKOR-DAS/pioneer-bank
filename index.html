@@ -207,8 +207,13 @@
 
             document.getElementById('withdrawAmount').value = "";
 
-            updateSpanText('currentWithdraw', withdrawNumber);
-            updateSpanText('currentBalance', -1 * withdrawNumber);
+            // if withdraw number value is negative
+            if (withdrawNumber < 0) {
+                alert("Withdraw number cannot be negative");
+            } else {
+                updateSpanText('currentWithdraw', withdrawNumber);
+                updateSpanText('currentBalance', -1 * withdrawNumber);
+            }
             //withdrawNumber kombe tai -1 diye gun kora hoise
 
         })
